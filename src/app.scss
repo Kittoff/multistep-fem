@@ -1,0 +1,54 @@
+@import url(https://fonts.google.com/specimen/Ubuntu);
+
+//Variables
+$marine-blue: hsl(213, 96%, 18%);
+$pastel-blue: hsl(228, 100%, 84%);
+$ubuntu-sans: "Ubuntu", sans-serif;
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100vh;
+  font-family: $ubuntu-sans;
+}
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.form-header-steps {
+  display: flex;
+  justify-content: space-evenly;
+  width: 250px;
+  margin: auto;
+}
+.form-header-steps span {
+  border: 1px solid white;
+  font-weight: 600;
+  display: flex;
+  border-radius: 50%;
+  width: 30px;
+  aspect-ratio: 1;
+  color: white;
+  margin-top: 30px;
+  justify-content: center;
+  align-items: center;
+
+  &.is-active {
+    background: $pastel-blue;
+    color: $marine-blue;
+  }
+}
+.form-container {
+  width: 375px;
+  aspect-ratio: 2/3;
+}
+.form-header-background {
+  background-image: url("/bg_mobile.svg");
+  height: 150px;
+  background-position: bottom;
+}
