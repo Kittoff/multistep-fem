@@ -30,14 +30,16 @@ function App() {
       </div>
       <form>
         {step}
-        {!isFirstStep && (
-          <button onClick={back} type="button">
-            Go Back
+        <div className="form-buttons">
+          {!isFirstStep && (
+            <button className="button-back" onClick={back} type="button">
+              Go Back
+            </button>
+          )}
+          <button className="button-next" type="button" onClick={next}>
+            {isLastStep ? "Confirm" : "Next Step"}
           </button>
-        )}
-        <button type="button" onClick={next}>
-          {isLastStep ? "Confirm" : "Next Step"}
-        </button>
+        </div>
       </form>
     </div>
   );

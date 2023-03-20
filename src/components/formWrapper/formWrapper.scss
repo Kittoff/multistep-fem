@@ -1,0 +1,21 @@
+.container {
+  background: white;
+  height: 337px;
+  width: 300px;
+  margin: -80px auto;
+
+  & label {
+    display: flex;
+  }
+}
+
+.children {
+  display: grid;
+  flex-direction: column;
+  width: 200px;
+  gap: 0.5rem;
+
+  & input {
+    height: 30px;
+  }
+}

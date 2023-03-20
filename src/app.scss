@@ -3,7 +3,29 @@
 //Variables
 $marine-blue: hsl(213, 96%, 18%);
 $pastel-blue: hsl(228, 100%, 84%);
+$light-blue: hsl(206, 94%, 87%);
+$strawberry-red: hsl(354, 84%, 57%);
+$cool-gray: hsl(231, 11%, 63%);
+$light-gray: hsl(229, 24%, 87%);
+$magnolia: hsl(217, 100%, 97%);
+$alabaster: hsl(231, 100%, 99%);
+$white: hsl(0, 0%, 100%);
+
 $ubuntu-sans: "Ubuntu", sans-serif;
+
+//Reset buttons style
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
 
 body {
   margin: 0;
@@ -11,6 +33,7 @@ body {
   box-sizing: border-box;
   height: 100vh;
   font-family: $ubuntu-sans;
+  background: $alabaster;
 }
 #root {
   display: flex;
@@ -43,9 +66,38 @@ body {
     color: $marine-blue;
   }
 }
+
+.button-next {
+  position: absolute;
+  left: 250px;
+  background: $marine-blue;
+  height: 35px;
+  width: 100px;
+  border-radius: 5px;
+  color: $white;
+  font-size: 15px;
+  font-weight: 500;
+}
+.button-back {
+  position: absolute;
+  right: 250px;
+}
+
+.form-buttons {
+  // position: absolute;
+  display: flex;
+  position: absolute;
+  background: $white;
+  height: 70px;
+  width: 375px;
+  justify-content: center;
+  place-items: center;
+  bottom: 13px;
+}
 .form-container {
   width: 375px;
   aspect-ratio: 2/3;
+  background: transparent;
 }
 .form-header-background {
   background-image: url("/bg_mobile.svg");
