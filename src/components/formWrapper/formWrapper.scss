@@ -1,9 +1,16 @@
 .container {
   background: white;
-  height: 337px;
   width: 300px;
   margin: -80px auto;
+  padding: 20px;
+  border-radius: 10px;
 
+  & h2,
+  p {
+    display: flex;
+    justify-content: left;
+    text-align-last: left;
+  }
   & label {
     display: flex;
   }
@@ -12,7 +19,6 @@
 .children {
   display: grid;
   flex-direction: column;
-  width: 200px;
   gap: 0.5rem;
 
   & input {
