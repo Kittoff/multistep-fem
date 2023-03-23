@@ -4,17 +4,17 @@ import "./planCard.scss";
 const plans = [
   {
     title: "Arcade",
-    icon: "icon-1",
+    icon: "./icon-arcade.svg",
     text: "$8/mo",
   },
   {
     title: "Advanced",
-    icon: "icon-2",
+    icon: "./icon-advanced.svg",
     text: "$12/mo",
   },
   {
     title: "Pro",
-    icon: "icon-3",
+    icon: "./icon-pro.svg",
     text: "$16/mo",
   },
 ];
@@ -24,7 +24,9 @@ const PlanCard = ({ plan, isSelected, onSelect }: any) => {
 
   return (
     <div className={cardClass} onClick={onSelect}>
-      <div className="plan-icon">{plan.icon}</div>
+      <div className="plan-icon">
+        <img src={plan.icon} alt={plan.title} />
+      </div>
       <div>
         <div className="plan-title">{plan.title}</div>
         <div className="plan-text">{plan.text}</div>
