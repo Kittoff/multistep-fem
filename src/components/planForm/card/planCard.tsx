@@ -5,24 +5,6 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import { InputSwitch } from "primereact/inputswitch";
 
-const plans = [
-  {
-    title: "Arcade",
-    icon: "./icon-arcade.svg",
-    text: [{ monthly: "$9/mo" }, { yearly: "$90/yr" }],
-  },
-  {
-    title: "Advanced",
-    icon: "./icon-advanced.svg",
-    text: [{ monthly: "$12/mo" }, { yearly: "$120/yr" }],
-  },
-  {
-    title: "Pro",
-    icon: "./icon-pro.svg",
-    text: [{ monthly: "$15/mo" }, { yearly: "$150/yr" }],
-  },
-];
-
 const PlanCard = ({ plan, isSelected, onSelect, isMonthly }: any) => {
   const cardClass = `plan-card ${isSelected ? "selected" : ""}`;
 
@@ -43,36 +25,40 @@ const PlanCard = ({ plan, isSelected, onSelect, isMonthly }: any) => {
     </div>
   );
 };
-export const SubscriptionPlans = () => {
-  const [selectedPlan, setSelectedPlan] = useState(plans[0]);
-
-  const handlePlanSelect = (plan: any) => {
-    setSelectedPlan(plan);
-  };
-  const [isMonthly, setIsMonthly] = useState(true);
+export const SubscriptionPlans = ({
+  plans,
+  handlePlanSelect,
+  selectedPlan,
+  isMonthly2,
+  updateMonthly,
+}: any) => {
+  // const handlePlanSelect = (plan: any) => {
+  //   setSelectedPlan(plan);
+  // };
+  // const [isMonthly, setIsMonthly] = useState(true);
 
   return (
     <div className="subscription-plans">
       <div className="plan-cards">
-        {plans.map((plan) => (
+        {plans.map((plan: any) => (
           <PlanCard
             key={plan.title}
             plan={plan}
             isSelected={plan === selectedPlan}
             onSelect={() => handlePlanSelect(plan)}
-            isMonthly={isMonthly}
+            isMonthly={isMonthly2}
           />
         ))}
       </div>
       <div className="selected-plan">
         {/* You have selected {selectedPlan.title} ({selectedPlan.text}) */}
-        <span className={isMonthly ? "choice" : "not-selected"}>Monthly</span>
+        <span className={isMonthly2 ? "choice" : "not-selected"}>Monthly</span>
         <InputSwitch
           className="button-switch"
-          checked={!isMonthly}
-          onChange={() => setIsMonthly(!isMonthly)}
+          checked={!isMonthly2}
+          onChange={() => updateMonthly(!isMonthly2)}
         />
-        <span className={!isMonthly ? "choice" : "not-selected"}>Yearly</span>
+        <span className={!isMonthly2 ? "choice" : "not-selected"}>Yearly</span>
       </div>
     </div>
   );
