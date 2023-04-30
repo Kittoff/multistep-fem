@@ -29,10 +29,25 @@ const plans = [
     text: [{ monthly: "$15/mo" }, { yearly: "$150/yr" }],
   },
 ];
+const addOns = [
+  {
+    title: "Online service",
+    subtitle: "Access to multiplayer games",
+  },
+  {
+    title: "Larger storage",
+    subtitle: "Extra 1TB of cloud save",
+  },
+  {
+    title: "Customizable profile",
+    subtitle: "Custom theme on your profile",
+  },
+];
 function App() {
   const [infosData, setInfosData] = useState(INITIAL_INFOS_DATA);
   const [selectedPlan, setSelectedPlan] = useState(plans[0]);
   const [isMonthly, setIsMonthly] = useState(true);
+  const [newAddOns, setNewAddOns] = useState<any>([]);
 
   const updateMonthly = () => {
     setIsMonthly(!isMonthly);
@@ -46,6 +61,17 @@ function App() {
     setSelectedPlan(plan);
   };
 
+  const addOrRemove = (name: any) => {
+    const newStudents = [...newAddOns];
+    const index = newStudents.indexOf(name);
+    if (index === -1) {
+      newStudents.push(name);
+    } else {
+      newStudents.splice(index, 1);
+    }
+    setNewAddOns(newStudents);
+  };
+
   const { step, next, isFirstStep, isLastStep, back, displaySteps } =
     useMultistepForm([
       <InfoForm {...infosData} updateFields={updateFields} />,
@@ -56,7 +82,11 @@ function App() {
         isMonthly2={isMonthly}
         updateMonthly={updateMonthly}
       />,
-      <AddonForm />,
+      <AddonForm
+        addOns={addOns}
+        addOrRemove={addOrRemove}
+        newAddOns={newAddOns}
+      />,
       <FinishForm />,
     ]);
 

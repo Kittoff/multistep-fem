@@ -1,33 +1,8 @@
-import React, { Fragment, useState } from "react";
+import { Fragment } from "react";
 import FormWrapper from "../formWrapper/FormWrapper";
-import { Checkbox } from "primereact/checkbox";
 import "./addForm.scss";
 
-const addOns = [
-  {
-    title: "Online service",
-    subtitle: "Access to multiplayer games",
-  },
-  {
-    title: "Larger storage",
-    subtitle: "Extra 1TB of cloud save",
-  },
-  {
-    title: "Customizable profile",
-    subtitle: "Custom theme on your profile",
-  },
-];
-
-const AddonForm = () => {
-  const [addons, setAddons] = useState<any[]>([]);
-
-  const onChange = (e: any) => {
-    let selectedCities = [...addons];
-    if (e.checked) selectedCities.push(e.value);
-    else selectedCities.splice(selectedCities.indexOf(e.value), 1);
-
-    setAddons(selectedCities);
-  };
+const AddonForm = ({ addOns, addOrRemove, newAddOns }: any) => {
   return (
     <FormWrapper
       title="Pick add-ons"
@@ -38,21 +13,18 @@ const AddonForm = () => {
           return (
             <Fragment key={addon.title}>
               <label className="addon-label">
-                <input type="checkbox" name="checkbox" value={addon.title} />
+                <input
+                  type="checkbox"
+                  name="checkbox"
+                  value={addon.title}
+                  onChange={() => addOrRemove(addon.title)}
+                  checked={newAddOns.includes(addon.title) ? true : false}
+                />
                 <div className="addon-text">
                   <p className="addon-title">{addon.title}</p>
                   <span>{addon.subtitle}</span>
                 </div>
               </label>
-              {/* <Checkbox
-                inputId={addon.title}
-                value={addon.title}
-                onChange={onChange}
-                checked={addons.includes(addon.title)}
-              />
-              <label htmlFor={addon.title} className="p-checkbox-label">
-                {addon.title}
-              </label> */}
             </Fragment>
           );
         })}
