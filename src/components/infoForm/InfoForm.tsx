@@ -1,7 +1,17 @@
 import React from "react";
 import FormWrapper from "../formWrapper/FormWrapper";
 
-const InfoForm = ({ name, email, phone, updateFields }: any) => {
+type UserData = {
+  name: string;
+  email: string;
+  phone: string;
+};
+
+type Props = UserData & {
+  updateFields: (fields: Partial<UserData>) => void;
+};
+
+const InfoForm = ({ name, email, phone, updateFields }: Props) => {
   return (
     <FormWrapper
       title="Personal Info"

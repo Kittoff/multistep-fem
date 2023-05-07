@@ -5,89 +5,55 @@ import PlanForm from "./components/planForm/PlanForm";
 import { useMultistepForm } from "./hooks/useMultistepForm";
 import "./app.scss";
 import { FormEvent, useState } from "react";
+import { AddOns, Data, Plans } from "./tools/types.js";
+import { INITIAL_INFOS_DATA, PLANS_DATA, ADDONS_DATA } from "./tools/datas.js";
 
-const INITIAL_INFOS_DATA = {
-  name: "",
-  email: "",
-  phone: "",
-};
-
-const plans = [
-  {
-    title: "Arcade",
-    icon: "./icon-arcade.svg",
-    text: [{ monthly: "$9/mo" }, { yearly: "$90/yr" }],
-  },
-  {
-    title: "Advanced",
-    icon: "./icon-advanced.svg",
-    text: [{ monthly: "$12/mo" }, { yearly: "$120/yr" }],
-  },
-  {
-    title: "Pro",
-    icon: "./icon-pro.svg",
-    text: [{ monthly: "$15/mo" }, { yearly: "$150/yr" }],
-  },
-];
-const addOns = [
-  {
-    title: "Online service",
-    subtitle: "Access to multiplayer games",
-  },
-  {
-    title: "Larger storage",
-    subtitle: "Extra 1TB of cloud save",
-  },
-  {
-    title: "Customizable profile",
-    subtitle: "Custom theme on your profile",
-  },
-];
 function App() {
   const [infosData, setInfosData] = useState(INITIAL_INFOS_DATA);
-  const [selectedPlan, setSelectedPlan] = useState(plans[0]);
+  const [selectedPlan, setSelectedPlan] = useState(PLANS_DATA[0]);
   const [isMonthly, setIsMonthly] = useState(true);
-  const [newAddOns, setNewAddOns] = useState<any>([]);
+  const [newAddOns, setNewAddOns] = useState<AddOns[]>([]);
 
   const updateMonthly = () => {
     setIsMonthly(!isMonthly);
   };
-  const updateFields = (fields: any) => {
+  const updateFields = (fields: Partial<Data>) => {
     setInfosData((prev) => {
       return { ...prev, ...fields };
     });
   };
-  const handlePlanSelect = (plan: any) => {
+  const handlePlanSelect = (plan: Plans) => {
+    console.log(plan);
     setSelectedPlan(plan);
   };
 
-  const addOrRemove = (name: any) => {
-    const newStudents = [...newAddOns];
-    const index = newStudents.indexOf(name);
+  const addOrRemove = (name: AddOns) => {
+    const newAddons = [...newAddOns];
+    const index = newAddons.indexOf(name);
     if (index === -1) {
-      newStudents.push(name);
+      newAddons.push(name);
     } else {
-      newStudents.splice(index, 1);
+      newAddons.splice(index, 1);
     }
-    setNewAddOns(newStudents);
+    setNewAddOns(newAddons);
   };
 
   const { step, next, isFirstStep, isLastStep, back, displaySteps } =
     useMultistepForm([
       <InfoForm {...infosData} updateFields={updateFields} />,
       <PlanForm
-        plans={plans}
+        plans={PLANS_DATA}
         handlePlanSelect={handlePlanSelect}
         selectedPlan={selectedPlan}
-        isMonthly2={isMonthly}
+        isMonthly={isMonthly}
         updateMonthly={updateMonthly}
       />,
       <AddonForm
-        addOns={addOns}
+        addOns={ADDONS_DATA}
         addOrRemove={addOrRemove}
         newAddOns={newAddOns}
       />,
-      <FinishForm />,
+      <FinishForm selectedPlan={selectedPlan} addOns={newAddOns} />,
     ]);
 
   const onSubmit = (e: FormEvent) => {

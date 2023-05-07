@@ -1,8 +1,19 @@
 import { Fragment } from "react";
 import FormWrapper from "../formWrapper/FormWrapper";
 import "./addForm.scss";
+import { AddOns } from "../../tools/types.js";
 
-const AddonForm = ({ addOns, addOrRemove, newAddOns }: any) => {
+type Props = {
+  addOns: AddOns[];
+  addOrRemove: (parameter: AddOns) => void;
+  newAddOns: AddOns[];
+};
+
+// type AddOns = string[] & {
+//   includes: (value: string) => boolean;
+// };
+
+const AddonForm = ({ addOns, addOrRemove, newAddOns }: Props) => {
   return (
     <FormWrapper
       title="Pick add-ons"
