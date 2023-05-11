@@ -28,15 +28,13 @@ function App() {
     setSelectedPlan(plan);
   };
 
-  const addOrRemove = (name: AddOns, event: any) => {
+  const addOrRemove = (name: AddOns) => {
     const newAddons = [...newAddOns];
     const index = newAddons.indexOf(name);
-    console.log("eeeeee : ", event);
-    if (event.target.checked) {
-      setIsLabelSelected(true);
-    }
+
     if (index === -1) {
       newAddons.push(name);
+      setIsLabelSelected(true);
     } else {
       newAddons.splice(index, 1);
     }

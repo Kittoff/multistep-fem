@@ -5,7 +5,7 @@ import { AddOns } from "../../tools/types.js";
 
 type Props = {
   addOns: AddOns[];
-  addOrRemove: (parameter: AddOns, event?: any) => void;
+  addOrRemove: (parameter: AddOns) => void;
   newAddOns: AddOns[];
   isLabelSelected: boolean;
   isMonthly: boolean;
@@ -41,7 +41,7 @@ const AddonForm = ({
                   type="checkbox"
                   name="checkbox"
                   value={addon.title}
-                  onChange={(e) => addOrRemove(addon.title, e)}
+                  onChange={() => addOrRemove(addon.title)}
                   checked={newAddOns.includes(addon.title) ? true : false}
                 />
                 <div className="addon-text">
