@@ -12,6 +12,7 @@ function App() {
   const [infosData, setInfosData] = useState(INITIAL_INFOS_DATA);
   const [selectedPlan, setSelectedPlan] = useState(PLANS_DATA[0]);
   const [isMonthly, setIsMonthly] = useState(true);
+  const [isLabelSelected, setIsLabelSelected] = useState(false);
   const [newAddOns, setNewAddOns] = useState<AddOns[]>([]);
 
   const updateMonthly = () => {
@@ -27,9 +28,13 @@ function App() {
     setSelectedPlan(plan);
   };
 
-  const addOrRemove = (name: AddOns) => {
+  const addOrRemove = (name: AddOns, event: any) => {
     const newAddons = [...newAddOns];
     const index = newAddons.indexOf(name);
+    console.log("eeeeee : ", event);
+    if (event.target.checked) {
+      setIsLabelSelected(true);
+    }
     if (index === -1) {
       newAddons.push(name);
     } else {
@@ -52,6 +57,8 @@ function App() {
         addOns={ADDONS_DATA}
         addOrRemove={addOrRemove}
         newAddOns={newAddOns}
+        isLabelSelected={isLabelSelected}
+        isMonthly={isMonthly}
       />,
       <FinishForm selectedPlan={selectedPlan} addOns={newAddOns} />,
     ]);

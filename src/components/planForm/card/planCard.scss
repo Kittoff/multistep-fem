@@ -2,13 +2,13 @@
 
 .plan-card {
   display: flex;
-  background: $white;
+  background: hsl(0, 0%, 100%);
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid $light-gray;
+  border: 1px solid hsl(229, 24%, 87%);
   align-items: center;
-  height: 75px;
+  height: 60px;
 
   &:hover {
     cursor: pointer;
